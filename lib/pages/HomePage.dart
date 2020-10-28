@@ -1,6 +1,8 @@
 import 'package:admin_panel_gs/pages/LoginPage.dart';
 import 'package:admin_panel_gs/pages/MaintainProductPage.dart';
 import 'package:admin_panel_gs/pages/AddNewProduct.dart';
+import 'package:admin_panel_gs/pages/NewOrderPage.dart';
+import 'package:admin_panel_gs/pages/ShippedOrderPage.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -79,7 +81,7 @@ class Home extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              //Navigator.push(context, MaterialPageRoute(builder: (context)=>AddNewCustomer()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>NewOrder()));
             },
             child: Container(
               color: Colors.white,
@@ -101,7 +103,7 @@ class Home extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              //Navigator.push(context, MaterialPageRoute(builder: (context)=>AddNewCustomer()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ShippedOrder()));
             },
             child: Container(
               color: Colors.white,

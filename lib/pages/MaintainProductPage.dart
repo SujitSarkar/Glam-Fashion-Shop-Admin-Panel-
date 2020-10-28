@@ -15,7 +15,7 @@ class _MaintainProductState extends State<MaintainProduct> {
   bool isSearch = false, isLoading = true;
   String searchQuery;
 
-  List<DocumentSnapshot> productList;
+  List productList=[];
   List searchedProducts = [];
 
   @override

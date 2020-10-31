@@ -284,18 +284,18 @@ class _UpdateProductState extends State<UpdateProduct> {
                                     updateWithImage();
                                   }
                                 },
-                                highlightedBorderColor: Colors.deepOrange,
-                                focusColor: Colors.deepOrange,
-                                splashColor: Colors.deepOrange[200],
+                                highlightedBorderColor: Colors.green,
+                                focusColor: Colors.green,
+                                splashColor: Colors.green[200],
                                 borderSide: BorderSide(
-                                    color: Colors.deepOrange, width: 2.0),
+                                    color: Colors.green, width: 2.0),
                                 child: Container(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(
                                         Icons.update_outlined,
-                                        color: Colors.deepOrange,
+                                        color: Colors.green,
                                       ),
                                       SizedBox(
                                         width: 8,
@@ -303,7 +303,7 @@ class _UpdateProductState extends State<UpdateProduct> {
                                       Text(
                                         "Update",
                                         style: TextStyle(
-                                          color: Colors.deepOrange[700],
+                                          color: Colors.green[700],
                                           fontSize: 16,
                                         ),
                                       ),

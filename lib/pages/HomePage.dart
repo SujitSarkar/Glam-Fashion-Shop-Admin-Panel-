@@ -3,6 +3,7 @@ import 'package:admin_panel_gs/pages/MaintainProductPage.dart';
 import 'package:admin_panel_gs/pages/AddNewProduct.dart';
 import 'package:admin_panel_gs/pages/NewOrderPage.dart';
 import 'package:admin_panel_gs/pages/ShippedOrderPage.dart';
+import 'package:admin_panel_gs/pages/UserDetailsPage.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -37,6 +38,7 @@ class Home extends StatelessWidget {
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         children: [
+
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProduct()));
@@ -58,6 +60,7 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
+
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>MaintainProduct()));
@@ -79,6 +82,7 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
+
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>NewOrder()));
@@ -101,6 +105,7 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
+
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>ShippedOrder()));
@@ -112,7 +117,7 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(Icons.remove_shopping_cart_rounded,
+                  Icon(Icons.shopping_cart_outlined,
                       size: 50.0, color: Colors.deepOrange),
                   Text(
                     "Shipped Order",
@@ -123,6 +128,30 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
+
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>UserDetails()));
+            },
+            child: Container(
+              color: Colors.white,
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.account_circle_outlined,
+                      size: 50.0, color: Colors.deepOrange),
+                  Text(
+                    "User Details",
+                    style: TextStyle(fontSize: 18.0, color: Colors.deepOrange),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+
           GestureDetector(
             onTap: () {
               //Navigator.push(context, MaterialPageRoute(builder: (context)=>MyApp()));

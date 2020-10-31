@@ -307,7 +307,7 @@ class _NewOrderState extends State<NewOrder> {
                           color: Colors.green, width: 2.0),
                       child: Container(
                         child: Text(
-                          "Product Shipped",
+                          "Shipped Product",
                           style: TextStyle(
                             color: Colors.green[700],
                             fontSize: 16,
@@ -512,7 +512,7 @@ class _NewOrderState extends State<NewOrder> {
                           color: Colors.green, width: 2.0),
                       child: Container(
                         child: Text(
-                          "Product Shipped",
+                          "Shipped Product",
                           style: TextStyle(
                             color: Colors.green[700],
                             fontSize: 16,

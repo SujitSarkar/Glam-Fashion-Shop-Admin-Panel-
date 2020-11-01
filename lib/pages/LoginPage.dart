@@ -20,7 +20,7 @@ class _LogInState extends State<LogIn> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         elevation: 0,
-        title: Text("Admin Panel"),
+        title: Text("GShop Admin Panel"),
         centerTitle: true,
       ),
       body: logInBody(),

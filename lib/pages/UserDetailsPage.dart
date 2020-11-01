@@ -9,7 +9,6 @@ class UserDetails extends StatefulWidget {
 }
 
 class _UserDetailsState extends State<UserDetails> {
-
   TextEditingController searchEditingController = TextEditingController();
   bool isSearch = false, isLoading = true;
   String searchQuery;
@@ -25,7 +24,7 @@ class _UserDetailsState extends State<UserDetails> {
 
   fetchUser() async {
     final QuerySnapshot resultQuery =
-    await Firestore.instance.collection("Users").getDocuments();
+        await Firestore.instance.collection("Users").getDocuments();
     userList = resultQuery.documents;
 
     if (userList.length != null) {
@@ -39,8 +38,8 @@ class _UserDetailsState extends State<UserDetails> {
 
   Future fetchSearchUser() async {
     searchedUser.clear();
-    for(int i=0; i<userList.length; i++){
-      if(userList[i]['phone']==searchQuery){
+    for (int i = 0; i < userList.length; i++) {
+      if (userList[i]['phone'] == searchQuery) {
         searchedUser.add(userList[i]);
       }
     }
@@ -54,11 +53,41 @@ class _UserDetailsState extends State<UserDetails> {
       body: isLoading
           ? dualRing()
           : isSearch
-          ? customSearch(context)
-          : userList.length==0
-          ? noDataFoundMgs()
-          : mainList(context),
-    );
+              ? customSearch(context)
+              : userList.length == 0
+                  ? noDataFoundMgs()
+                  : mainList(context),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            ///Show Alert Dialog....
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Center(
+                        child: Text(
+                      "${userList.length} Active Users",
+                      style: TextStyle(color: Colors.green),
+                    )),
+                    content: FlatButton(
+                      color: Colors.deepOrange,
+                      onPressed: () => Navigator.of(context).pop(),
+                      splashColor: Colors.deepOrange[300],
+                      child: Text(
+                        "Close",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  );
+                });
+          },
+          tooltip: "Total Active User",
+          backgroundColor: Colors.deepOrange,
+          splashColor: Colors.white,
+          isExtended: true,
+          child: Icon(Icons.supervised_user_circle,size: 40,),
+    ));
   }
 
   customAppBar() {
@@ -97,7 +126,7 @@ class _UserDetailsState extends State<UserDetails> {
               },
             ),
           ),
-          onFieldSubmitted: (value){
+          onFieldSubmitted: (value) {
             setState(() {
               searchQuery = value;
               isSearch = true;
@@ -148,7 +177,6 @@ class _UserDetailsState extends State<UserDetails> {
               margin: EdgeInsets.only(bottom: 10, top: 10),
               child: Column(
                 children: [
-
                   ///User Name....
                   Container(
                     margin: EdgeInsets.only(top: 10, left: 10),
@@ -168,7 +196,11 @@ class _UserDetailsState extends State<UserDetails> {
                     alignment: Alignment.topLeft,
                     child: Text(
                       "${userList[index]['phone']}",
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700],fontWeight: FontWeight.w500,),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[700],
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
 
@@ -201,8 +233,9 @@ class _UserDetailsState extends State<UserDetails> {
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
-                  SizedBox(height: 10,),
-
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             );
@@ -214,91 +247,98 @@ class _UserDetailsState extends State<UserDetails> {
     fetchSearchUser();
     return searchedUser.length == 0
         ? Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.search,
-            color: Colors.grey,
-            size: 70.0,
-          ),
-          Text(
-            "No order found by this number",
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey, fontSize: 20.0),
-          ),
-        ],
-      ),
-    )
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.search,
+                  color: Colors.grey,
+                  size: 70.0,
+                ),
+                Text(
+                  "No order found by this number",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey, fontSize: 20.0),
+                ),
+              ],
+            ),
+          )
         : Container(
-      padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-      child: ListView.builder(
-          itemCount: searchedUser.length,
-          itemBuilder: (context, index) {
-            return Card(
-              margin: EdgeInsets.only(bottom: 10, top: 10),
-              child: Column(
-                children: [
+            padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: ListView.builder(
+                itemCount: searchedUser.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: EdgeInsets.only(bottom: 10, top: 10),
+                    child: Column(
+                      children: [
+                        ///User Name....
+                        Container(
+                          margin: EdgeInsets.only(top: 10, left: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "${searchedUser[index]['name']}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                color: Colors.grey[800]),
+                          ),
+                        ),
 
-                  ///User Name....
-                  Container(
-                    margin: EdgeInsets.only(top: 10, left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "${searchedUser[index]['name']}",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Colors.grey[800]),
+                        ///User Phone....
+                        Container(
+                          margin: EdgeInsets.only(top: 10, left: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "${searchedUser[index]['phone']}",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey[700],
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+
+                        ///User Point....
+                        Container(
+                          margin: EdgeInsets.only(top: 5, left: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Point: ${searchedUser[index]['point']}",
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey[700]),
+                          ),
+                        ),
+
+                        ///User Address....
+                        Container(
+                          margin: EdgeInsets.only(top: 5, left: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Address: ${searchedUser[index]['address']}",
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey[700]),
+                          ),
+                        ),
+
+                        ///Join Date....
+                        Container(
+                          margin: EdgeInsets.only(top: 5, left: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Join Date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedUser[index]['created date'])))}",
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey[700]),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
-                  ),
-
-                  ///User Phone....
-                  Container(
-                    margin: EdgeInsets.only(top: 10, left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "${searchedUser[index]['phone']}",
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700],fontWeight: FontWeight.w500,),
-                    ),
-                  ),
-
-                  ///User Point....
-                  Container(
-                    margin: EdgeInsets.only(top: 5, left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Point: ${searchedUser[index]['point']}",
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                    ),
-                  ),
-
-                  ///User Address....
-                  Container(
-                    margin: EdgeInsets.only(top: 5, left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Address: ${searchedUser[index]['address']}",
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                    ),
-                  ),
-
-                  ///Join Date....
-                  Container(
-                    margin: EdgeInsets.only(top: 5, left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Join Date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedUser[index]['created date'])))}",
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-
-                ],
-              ),
-            );
-          }),
-    );
+                  );
+                }),
+          );
   }
 }

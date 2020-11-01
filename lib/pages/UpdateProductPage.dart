@@ -53,11 +53,12 @@ class _UpdateProductState extends State<UpdateProduct> {
   TextEditingController descController = TextEditingController();
   TextEditingController sizeController = TextEditingController();
   TextEditingController stockController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   bool isLoading = false;
   File imageFile;
   String loadingMgs;
-  String changedProductPoint="";
+  String changedProductPoint;
 
   @override
   void initState() {
@@ -110,245 +111,254 @@ class _UpdateProductState extends State<UpdateProduct> {
             child: Stack(
               children: [
                 SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      (imageFile == null)
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(3),
-                              child: Image.network(
-                                _productImage,
-                                width: MediaQuery.of(context).size.width*.9,
-                                height: 300,
-                                fit: BoxFit.fitHeight,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        (imageFile == null)
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(3),
+                                child: Image.network(
+                                  _productImage,
+                                  width: MediaQuery.of(context).size.width*.9,
+                                  height: 300,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              )
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(3),
+                                child: Image.file(
+                                  imageFile,
+                                  width: MediaQuery.of(context).size.width*.9,
+                                  height: 300,
+                                  fit: BoxFit.fitHeight,
+                                ),
                               ),
-                            )
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(3),
-                              child: Image.file(
-                                imageFile,
-                                width: MediaQuery.of(context).size.width*.9,
-                                height: 300,
-                                fit: BoxFit.fitHeight,
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        OutlineButton(
+                            onPressed: takePhotoFromGallery,
+                            highlightedBorderColor: Colors.deepOrange,
+                            focusColor: Colors.deepOrange,
+                            splashColor: Colors.deepOrange[200],
+                            borderSide:
+                                BorderSide(color: Colors.deepOrange, width: 2.0),
+                            child: Container(
+                              width: 113,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.add_photo_alternate_outlined,
+                                    color: Colors.deepOrange,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    "Take Photo",
+                                    style: TextStyle(
+                                      color: Colors.deepOrange[700],
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      OutlineButton(
-                          onPressed: takePhotoFromGallery,
-                          highlightedBorderColor: Colors.deepOrange,
-                          focusColor: Colors.deepOrange,
-                          splashColor: Colors.deepOrange[200],
-                          borderSide:
-                              BorderSide(color: Colors.deepOrange, width: 2.0),
-                          child: Container(
-                            width: 113,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.add_photo_alternate_outlined,
-                                  color: Colors.deepOrange,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "Take Photo",
-                                  style: TextStyle(
-                                    color: Colors.deepOrange[700],
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        child: Text("Product Name : ",
-                            style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey[600])),
-                      ),
-                      TextField(
-                        textCapitalization: TextCapitalization.words,
-                        controller: nameController,
-                        decoration: productInputDecoration.copyWith(
-                            hintText: 'Product Name'),
-                        onChanged: (value) {
-                          setState(() => _productName = value);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        child: Text("Product Price Point : ",
-                            style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey[600])),
-                      ),
-                      TextField(
-                        keyboardType: TextInputType.number,
-                        controller: priceController,
-                        decoration: productInputDecoration.copyWith(
-                            hintText: 'Product Price Point'),
-                        onChanged: (value) {
-                          setState(() => changedProductPoint = value);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        child: Text("Product Description : ",
-                            style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey[600])),
-                      ),
-                      TextField(
-                        textCapitalization: TextCapitalization.sentences,
-                        keyboardType: TextInputType.text,
-                        maxLines: 10,
-                        controller: descController,
-                        decoration: productInputDecoration.copyWith(
-                            hintText: 'Product Description'),
-                        onChanged: (value) {
-                          setState(() => _productDesc = value);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        child: Text("Available Stock : ",
-                            style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey[600])),
-                      ),
-                      TextField(
-                        keyboardType: TextInputType.number,
-                        controller: stockController,
-                        decoration: productInputDecoration.copyWith(
-                            hintText: 'Available Stock'),
-                        onChanged: (value) {
-                          setState(() => _availableStock = value);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        child: Text("Available Size : ",
-                            style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey[600])),
-                      ),
-                      TextField(
-                        textCapitalization: TextCapitalization.characters,
-                        keyboardType: TextInputType.text,
-                        controller: sizeController,
-                        decoration: productInputDecoration.copyWith(
-                            hintText: 'Available Size'),
-                        onChanged: (value) {
-                          setState(() => _availableSize = value);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: OutlineButton(
-                                onPressed: () {
-                                  if(imageFile == null){
-                                    setState((){ isLoading = true;loadingMgs="Updating";});
-                                    updateWithoutImage();
-                                  }
-                                  else{
-                                    setState(() { isLoading = true;loadingMgs="Updating";});
-                                    updateWithImage();
-                                  }
-                                },
-                                highlightedBorderColor: Colors.green,
-                                focusColor: Colors.green,
-                                splashColor: Colors.green[200],
-                                borderSide: BorderSide(
-                                    color: Colors.green, width: 2.0),
-                                child: Container(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.update_outlined,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        "Update",
-                                        style: TextStyle(
-                                          color: Colors.green[700],
-                                          fontSize: 16,
+                            )),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text("Product Name : ",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[600])),
+                        ),
+                        TextFormField(
+                          textCapitalization: TextCapitalization.words,
+                          controller: nameController,
+                          validator: (value)=> value.isEmpty? "Enter product name":null,
+                          decoration: productInputDecoration.copyWith(
+                              hintText: 'Product Name'),
+                          onChanged: (value) {
+                            setState(() => _productName = value);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text("Product Point : ",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[600])),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: priceController,
+                          validator: (value)=> value.isEmpty? "Enter product Point":null,
+                          decoration: productInputDecoration.copyWith(
+                              hintText: 'Product Point'),
+                          onChanged: (value) {
+                            setState(() => changedProductPoint = value);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text("Product Description : ",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[600])),
+                        ),
+                        TextFormField(
+                          textCapitalization: TextCapitalization.sentences,
+                          keyboardType: TextInputType.text,
+                          maxLines: 10,
+                          controller: descController,
+                          validator: (value)=> value.isEmpty? "Enter product description":null,
+                          decoration: productInputDecoration.copyWith(
+                              hintText: 'Product Description'),
+                          onChanged: (value) {
+                            setState(() => _productDesc = value);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text("Available Stock : ",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[600])),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: stockController,
+                          validator: (value)=> value.isEmpty? "Enter stock":null,
+                          decoration: productInputDecoration.copyWith(
+                              hintText: 'Available Stock'),
+                          onChanged: (value) {
+                            setState(() => _availableStock = value);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text("Available Size : ",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[600])),
+                        ),
+                        TextFormField(
+                          textCapitalization: TextCapitalization.characters,
+                          keyboardType: TextInputType.text,
+                          controller: sizeController,
+                          decoration: productInputDecoration.copyWith(
+                              hintText: 'Available Size'),
+                          onChanged: (value) {
+                            setState(() => _availableSize = value);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: OutlineButton(
+                                  onPressed: () {
+                                    if(_formKey.currentState.validate()){
+                                      if(imageFile == null){
+                                        setState((){ isLoading = true;loadingMgs="Updating";});
+                                        updateWithoutImage();
+                                      }
+                                      else{
+                                        setState(() { isLoading = true;loadingMgs="Updating";});
+                                        updateWithImage();
+                                      }
+                                    }
+                                  },
+                                  highlightedBorderColor: Colors.green,
+                                  focusColor: Colors.green,
+                                  splashColor: Colors.green[200],
+                                  borderSide: BorderSide(
+                                      color: Colors.green, width: 2.0),
+                                  child: Container(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.update_outlined,
+                                          color: Colors.green,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: OutlineButton(
-                                onPressed: () {
-                                  deleteConfirmation(context);
-                                },
-                                highlightedBorderColor: Colors.red,
-                                focusColor: Colors.red,
-                                splashColor: Colors.red[200],
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 2.0),
-                                child: Center(
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.delete_outline,
-                                        color: Colors.red,
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        "Delete",
-                                        style: TextStyle(
-                                          color: Colors.deepOrange[700],
-                                          fontSize: 16,
+                                        SizedBox(
+                                          width: 8,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                    ],
+                                        Text(
+                                          "Update",
+                                          style: TextStyle(
+                                            color: Colors.green[700],
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: OutlineButton(
+                                  onPressed: () {
+                                    deleteConfirmation(context);
+                                  },
+                                  highlightedBorderColor: Colors.red,
+                                  focusColor: Colors.red,
+                                  splashColor: Colors.red[200],
+                                  borderSide:
+                                      BorderSide(color: Colors.red, width: 2.0),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.delete_outline,
+                                          color: Colors.red,
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                            color: Colors.deepOrange[700],
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -369,7 +379,7 @@ class _UpdateProductState extends State<UpdateProduct> {
   Future<void> updateWithoutImage() async {
 
     dynamic point;
-    if(changedProductPoint.length==0){
+    if(changedProductPoint==null){
       point = _productPrice;
     }
     else{point= double.parse(changedProductPoint);}
@@ -421,7 +431,7 @@ class _UpdateProductState extends State<UpdateProduct> {
 
   Future<void> updateWithImage() async {
     dynamic point;
-    if(changedProductPoint.length==0){
+    if(changedProductPoint== null){
       point = _productPrice;
     }
     else{point= double.parse(changedProductPoint);}
@@ -484,7 +494,7 @@ class _UpdateProductState extends State<UpdateProduct> {
 
   }
 
-  Future<Void> deleteProduct() async{
+  Future<void> deleteProduct() async{
     FirebaseStorage.instance
         .ref()
         .child("Product Image")

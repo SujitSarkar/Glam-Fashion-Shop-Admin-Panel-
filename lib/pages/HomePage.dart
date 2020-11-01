@@ -1,4 +1,6 @@
+import 'package:admin_panel_gs/pages/AddAdminPage.dart';
 import 'package:admin_panel_gs/pages/LoginPage.dart';
+import 'package:admin_panel_gs/pages/MaintainPointPage.dart';
 import 'package:admin_panel_gs/pages/MaintainProductPage.dart';
 import 'package:admin_panel_gs/pages/AddNewProduct.dart';
 import 'package:admin_panel_gs/pages/NewOrderPage.dart';
@@ -44,7 +46,7 @@ class Home extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProduct()));
             },
             child: Container(
-              color: Colors.white,
+              color: Colors.orange[100],
               margin: EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +68,7 @@ class Home extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>MaintainProduct()));
             },
             child: Container(
-              color: Colors.white,
+              color: Colors.orange[100],
               margin: EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +90,7 @@ class Home extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>NewOrder()));
             },
             child: Container(
-              color: Colors.white,
+              color: Colors.orange[100],
               margin: EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +113,7 @@ class Home extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>ShippedOrder()));
             },
             child: Container(
-              color: Colors.white,
+              color: Colors.orange[100],
               margin: EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -134,7 +136,7 @@ class Home extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>UserDetails()));
             },
             child: Container(
-              color: Colors.white,
+              color: Colors.orange[100],
               margin: EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -154,10 +156,56 @@ class Home extends StatelessWidget {
 
           GestureDetector(
             onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>MaintainPoint()));
+            },
+            child: Container(
+              color: Colors.orange[100],
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.widgets_rounded,
+                      size: 50.0, color: Colors.deepOrange),
+                  Text(
+                    "Maintain Reward Point",
+                    style: TextStyle(fontSize: 18.0, color: Colors.deepOrange),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>AddAdmin()));
+            },
+            child: Container(
+              color: Colors.orange[100],
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.security_outlined,
+                      size: 50.0, color: Colors.deepOrange),
+                  Text(
+                    "Add Admin",
+                    style: TextStyle(fontSize: 18.0, color: Colors.deepOrange),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          GestureDetector(
+            onTap: () {
               //Navigator.push(context, MaterialPageRoute(builder: (context)=>MyApp()));
             },
             child: Container(
-              color: Colors.white,
+              color: Colors.orange[100],
               margin: EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

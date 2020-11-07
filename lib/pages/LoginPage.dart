@@ -2,6 +2,7 @@ import 'package:admin_panel_gs/pages/HomePage.dart';
 import 'package:admin_panel_gs/shared/formDecoration.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -13,6 +14,23 @@ class _LogInState extends State<LogIn> {
   final _formKye = GlobalKey<FormState>();
   String phone, password;
   String wrongMgs="";
+  SharedPreferences preferences;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkAlreadyCheckedIn();
+  }
+
+  checkAlreadyCheckedIn() async{
+    preferences = await SharedPreferences.getInstance();
+    String phone= preferences.getString('phone');
+    String password= preferences.getString('password');
+    if(!(phone==null) && !(password==null)){
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Home()),(route) => false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,6 +140,9 @@ class _LogInState extends State<LogIn> {
     }
     else{
       if(documentSnapshot[0]['password'] == password){
+        preferences = await SharedPreferences.getInstance();
+        preferences.setString("phone", phone);
+        preferences.setString("password", password);
         setState(() {
           isLoading = false;
           wrongMgs = "";

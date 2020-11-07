@@ -7,6 +7,7 @@ import 'package:admin_panel_gs/pages/NewOrderPage.dart';
 import 'package:admin_panel_gs/pages/ShippedOrderPage.dart';
 import 'package:admin_panel_gs/pages/UserDetailsPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -24,9 +25,13 @@ class Home extends StatelessWidget {
                 Icons.logout,
                 color: Colors.grey[200],
               ),
-              onPressed: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => LogIn()), (route) => false);
+              onPressed: () async{
+                SharedPreferences preferences = await SharedPreferences.getInstance();
+                preferences.clear().then((value){
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => LogIn()), (route) => false);
+                });
+
               })
         ],
       ),

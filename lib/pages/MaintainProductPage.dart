@@ -129,6 +129,7 @@ class _MaintainProductState extends State<MaintainProduct> {
   }
 
   Widget mainList(BuildContext context) {
+    Size size= MediaQuery.of(context).size;
     getAllProducts();
     return Container(
       padding: EdgeInsets.all(10),
@@ -136,10 +137,10 @@ class _MaintainProductState extends State<MaintainProduct> {
       child: GridView.builder(
         itemCount: productList.length,
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
+            maxCrossAxisExtent: size.width/2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 0.6),
+            childAspectRatio: 0.7),
         itemBuilder: (context, index) => Card(
           child: InkWell(
             onTap: () {
@@ -169,7 +170,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                     productList[index]['image'],
                     width: MediaQuery.of(context).size.width,
                     height: 100,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
                 Container(
@@ -178,6 +179,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                   title: Text(
                     productList[index]['name'],
                     style: TextStyle(color: Colors.grey[800]),
+                    maxLines: 3,
                   ),
                   subtitle: Container(
                     margin: EdgeInsets.only(top: 5),
@@ -186,8 +188,9 @@ class _MaintainProductState extends State<MaintainProduct> {
                         Container(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Point:  ${productList[index]['price']}",
+                            "৳: ${productList[index]['price']} Coin",
                             textAlign: TextAlign.left,
+                            style: TextStyle(color: Colors.deepOrange),
                           ),
                         ),
                         Container(
@@ -212,6 +215,7 @@ class _MaintainProductState extends State<MaintainProduct> {
   }
 
   Widget customSearch(BuildContext context) {
+    Size size= MediaQuery.of(context).size;
     fetchSearchProducts();
     return searchedProducts.length == 0
         ? Center(
@@ -238,10 +242,10 @@ class _MaintainProductState extends State<MaintainProduct> {
             child: GridView.builder(
               itemCount: searchedProducts.length,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
+                  maxCrossAxisExtent: size.width/2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.6),
+                  childAspectRatio: 0.7),
               //reverse: true,
               //scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => Card(
@@ -277,15 +281,17 @@ class _MaintainProductState extends State<MaintainProduct> {
                           searchedProducts[index]['image'],
                           width: MediaQuery.of(context).size.width,
                           height: 100,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fitHeight,
                         ),
                       ),
                       Container(
                           child: ListTile(
                         contentPadding: EdgeInsets.all(5),
                         title: Text(
-                          searchedProducts[index]['name'],
+                          "${searchedProducts[index]['name']}",
+                          textAlign: TextAlign.left,
                           style: TextStyle(color: Colors.grey[800]),
+                          maxLines: 3,
                         ),
                         subtitle: Container(
                           margin: EdgeInsets.only(top: 5),
@@ -294,8 +300,9 @@ class _MaintainProductState extends State<MaintainProduct> {
                               Container(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "Point:  ${searchedProducts[index]['price']}",
+                                  "৳: ${searchedProducts[index]['price']} Coin",
                                   textAlign: TextAlign.left,
+                                  style: TextStyle(color: Colors.deepOrange),
                                 ),
                               ),
                               Container(

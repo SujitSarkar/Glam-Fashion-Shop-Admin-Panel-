@@ -6,25 +6,29 @@ const textInputDecoration = InputDecoration(
     fillColor: Colors.white,
     filled: true,
     enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(50)),
       borderSide: BorderSide(
-        color: Colors.deepOrange,
+        color: Colors.transparent,
         width: 1.0,
       ),
     ),
     focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(50)),
       borderSide: BorderSide(
-        color: Colors.deepOrange,
+        color: Colors.transparent,
         width: 1.0,
       ),
     ),
     errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(50)),
         borderSide: BorderSide(
-          color: Colors.red,
+          color: Colors.transparent,
           width: 1.0,
         )),
     focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(50)),
       borderSide: BorderSide(
-        color: Colors.red,
+        color: Colors.transparent,
         width: 1.0,
       ),
     ),
@@ -38,24 +42,24 @@ const productInputDecoration = InputDecoration(
     filled: true,
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.deepOrange,
+        color: Colors.transparent,
         width: 1.0,
       ),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.deepOrange,
+        color: Colors.transparent,
         width: 1.0,
       ),
     ),
     errorBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.red,
+          color: Colors.transparent,
           width: 1.0,
         )),
     focusedErrorBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.red,
+        color: Colors.transparent,
         width: 1.0,
       ),
     ),

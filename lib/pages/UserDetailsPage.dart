@@ -209,7 +209,7 @@ class _UserDetailsState extends State<UserDetails> {
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Point: ${userList[index]['point']}",
+                      "Coin: ${userList[index]['point']}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),

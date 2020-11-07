@@ -167,9 +167,19 @@ class _NewOrderState extends State<NewOrder> {
                     ),
                   ),
 
-                  ///Product Quantity....
+                  ///Product description....
                   Container(
                     margin: EdgeInsets.only(top: 10, left: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Product Desc: ${newOrderList[index]['product description']}",
+                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                    ),
+                  ),
+
+                  ///Product Quantity....
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Quantity: ${newOrderList[index]['product quantity']}",
@@ -375,9 +385,19 @@ class _NewOrderState extends State<NewOrder> {
                     ),
                   ),
 
-                  ///Product Quantity....
+                  ///Product description....
                   Container(
                     margin: EdgeInsets.only(top: 10, left: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Product Desc: ${searchedOrder[index]['product description']}",
+                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                    ),
+                  ),
+
+                  ///Product Quantity....
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Quantity: ${searchedOrder[index]['product quantity']}",

@@ -220,7 +220,7 @@ class _UpdateProductState extends State<UpdateProduct> {
                         ),
                         TextFormField(
                           textCapitalization: TextCapitalization.sentences,
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.multiline,
                           maxLines: 10,
                           controller: descController,
                           validator: (value)=> value.isEmpty? "Enter product description":null,

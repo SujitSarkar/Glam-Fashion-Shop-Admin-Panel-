@@ -172,7 +172,7 @@ class _NewOrderState extends State<NewOrder> {
                     margin: EdgeInsets.only(top: 10, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Product Desc: ${newOrderList[index]['product description']}",
+                      "${newOrderList[index]['product description']}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
@@ -390,7 +390,7 @@ class _NewOrderState extends State<NewOrder> {
                     margin: EdgeInsets.only(top: 10, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Product Desc: ${searchedOrder[index]['product description']}",
+                      "${searchedOrder[index]['product description']}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),

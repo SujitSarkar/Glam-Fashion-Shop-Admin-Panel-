@@ -173,7 +173,7 @@ class _ShippedOrder extends State<ShippedOrder> {
                     margin: EdgeInsets.only(top: 10, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Product Desc: ${shippedOrderList[index]['product description']}",
+                      "${shippedOrderList[index]['product description']}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
@@ -391,7 +391,7 @@ class _ShippedOrder extends State<ShippedOrder> {
                     margin: EdgeInsets.only(top: 10, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Product Desc: ${searchedOrder[index]['product description']}",
+                      "${searchedOrder[index]['product description']}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),

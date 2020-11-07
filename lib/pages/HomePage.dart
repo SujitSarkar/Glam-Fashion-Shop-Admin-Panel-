@@ -173,7 +173,7 @@ class Home extends StatelessWidget {
                   Icon(Icons.widgets_rounded,
                       size: 50.0, color: Colors.deepOrange),
                   Text(
-                    "Maintain Reward Point",
+                    "Update Reward Coin",
                     style: TextStyle(fontSize: 18.0, color: Colors.deepOrange),
                     textAlign: TextAlign.center,
                   ),

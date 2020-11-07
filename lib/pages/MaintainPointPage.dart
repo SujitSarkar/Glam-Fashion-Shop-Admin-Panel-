@@ -61,7 +61,7 @@ class _MaintainPointState extends State<MaintainPoint> {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "Set reward point per video",
+                  "Set reward coin per video",
                   style: TextStyle(
                       color: Colors.deepOrange, fontSize: size.width/15,fontWeight: FontWeight.w500),
                 ),
@@ -71,7 +71,7 @@ class _MaintainPointState extends State<MaintainPoint> {
               Container(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Reward point:",
+                  "Reward Coin:",
                   style: TextStyle(color: Colors.grey[700],fontWeight: FontWeight.w500),
                 ),
               ),
@@ -80,7 +80,7 @@ class _MaintainPointState extends State<MaintainPoint> {
                 controller: pointController,
                 validator: (value)=> value.isEmpty ? "Enter point" : null,
                 decoration: productInputDecoration.copyWith(
-                    hintText: 'Reward point'),
+                    hintText: 'Reward Coin'),
                 onChanged: (value) {
                   setState(() => changedPoint = value);
                 },
@@ -122,7 +122,7 @@ class _MaintainPointState extends State<MaintainPoint> {
           barrierDismissible: false,
           builder: (context){
             return AlertDialog(
-              title: Text("Point updated"),
+              title: Text("Coin amount updated"),
               content: FlatButton(
                 color: Colors.deepOrange,
                 onPressed: ()=> Navigator.of(context).pop(),

@@ -170,7 +170,7 @@ class _ShippedOrder extends State<ShippedOrder> {
 
                   ///Product description....
                   Container(
-                    margin: EdgeInsets.only(top: 10, left: 10),
+                    margin: EdgeInsets.only(left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
                       "${shippedOrderList[index]['product description']}",
@@ -221,22 +221,12 @@ class _ShippedOrder extends State<ShippedOrder> {
                     ),
                   ),
 
-                  ///Ordered Time....
-                  Container(
-                    margin: EdgeInsets.only(top: 5, left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Order date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(shippedOrderList[index]['ordered date'])))}",
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                    ),
-                  ),
-
                   ///Customer Phone....
                   Container(
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Customer phone: ${shippedOrderList[index]['ordered phone']}",
+                      "Phone: ${shippedOrderList[index]['ordered phone']}",
                       style: TextStyle(
                           fontSize: 14, color: Colors.grey[700]),
                     ),
@@ -247,7 +237,7 @@ class _ShippedOrder extends State<ShippedOrder> {
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Customer name: ${shippedOrderList[index]['customer name']}",
+                      "Name: ${shippedOrderList[index]['customer name']}",
                       style: TextStyle(
                           fontSize: 14, color: Colors.grey[700]),
                     ),
@@ -263,8 +253,15 @@ class _ShippedOrder extends State<ShippedOrder> {
                           fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
+
+                  ///Ordered Time....
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Order date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(shippedOrderList[index]['ordered date'])))}",
+                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                    ),
                   ),
 
                   OutlineButton(
@@ -388,7 +385,7 @@ class _ShippedOrder extends State<ShippedOrder> {
 
                   ///Product description....
                   Container(
-                    margin: EdgeInsets.only(top: 10, left: 10),
+                    margin: EdgeInsets.only(left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
                       "${searchedOrder[index]['product description']}",
@@ -439,22 +436,12 @@ class _ShippedOrder extends State<ShippedOrder> {
                     ),
                   ),
 
-                  ///Ordered Time....
-                  Container(
-                    margin: EdgeInsets.only(top: 5, left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Order date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedOrder[index]['ordered date'])))}",
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                    ),
-                  ),
-
                   ///Customer Phone....
                   Container(
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Customer phone: ${searchedOrder[index]['ordered phone']}",
+                      "Phone: ${searchedOrder[index]['ordered phone']}",
                       style: TextStyle(
                           fontSize: 14, color: Colors.grey[700]),
                     ),
@@ -465,7 +452,7 @@ class _ShippedOrder extends State<ShippedOrder> {
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Customer name: ${searchedOrder[index]['customer name']}",
+                      "Name: ${searchedOrder[index]['customer name']}",
                       style: TextStyle(
                           fontSize: 14, color: Colors.grey[700]),
                     ),
@@ -479,6 +466,16 @@ class _ShippedOrder extends State<ShippedOrder> {
                       "Address: ${searchedOrder[index]['customer address']}",
                       style: TextStyle(
                           fontSize: 14, color: Colors.grey[700]),
+                    ),
+                  ),
+
+                  ///Ordered Time....
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Order date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedOrder[index]['ordered date'])))}",
+                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
 

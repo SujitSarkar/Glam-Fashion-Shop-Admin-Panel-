@@ -33,7 +33,6 @@ dependencies:
 #  firebase_auth: ^0.14.0+5
   flutter_spinkit: "^4.1.2"
   image_picker: ^0.6.4
-#  cached_network_image: ^2.3.2+1
   intl: ^0.16.1
   shared_preferences: ^0.5.3+4
 

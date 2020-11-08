@@ -321,7 +321,7 @@ class _AddProductState extends State<AddProduct> {
                 barrierDismissible: false,
                 builder: (context){
                   return AlertDialog(
-                    title: Text("Product Added successfully"),
+                    title: Text("Product Added successfully",textAlign: TextAlign.center),
                     content: FlatButton(
                       color: Colors.deepOrange,
                       onPressed: ()=> Navigator.of(context).pop(),
@@ -339,7 +339,7 @@ class _AddProductState extends State<AddProduct> {
               barrierDismissible: false,
               builder: (context){
                 return AlertDialog(
-                  title: Text(errorMgs.toString()),
+                  title: Text(errorMgs.toString(),textAlign: TextAlign.center),
                   content: FlatButton(
                     color: Colors.deepOrange,
                     onPressed: ()=> Navigator.of(context).pop(),

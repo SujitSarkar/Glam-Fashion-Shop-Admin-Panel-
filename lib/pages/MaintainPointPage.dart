@@ -122,7 +122,7 @@ class _MaintainPointState extends State<MaintainPoint> {
           barrierDismissible: false,
           builder: (context){
             return AlertDialog(
-              title: Text("Coin amount updated"),
+              title: Text("Coin amount updated",textAlign: TextAlign.center),
               content: FlatButton(
                 color: Colors.deepOrange,
                 onPressed: ()=> Navigator.of(context).pop(),
@@ -141,7 +141,7 @@ class _MaintainPointState extends State<MaintainPoint> {
           barrierDismissible: false,
           builder: (context){
             return AlertDialog(
-              title: Text("$errMgs"),
+              title: Text("$errMgs",textAlign: TextAlign.center),
               content: FlatButton(
                 color: Colors.deepOrange,
                 onPressed: ()=> Navigator.of(context).pop(),

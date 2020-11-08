@@ -52,6 +52,34 @@ class _MaintainProductState extends State<MaintainProduct> {
               : productList.length == 0
                   ? noDataFoundMgs()
                   : mainList(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Total Products",
+        onPressed: (){
+          ///Show Alert Dialog....
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text("Total Products: ${productList.length}",textAlign: TextAlign.center,),
+                  content: FlatButton(
+                    color: Colors.deepOrange,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    splashColor: Colors.deepOrange[300],
+                    child: Text(
+                      "Close",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                );
+              });
+        },
+        backgroundColor: Colors.deepOrange,
+        child: Icon(Icons.widgets_rounded,color: Colors.white,),
+      ),
     );
   }
 

@@ -258,7 +258,7 @@ class _NewOrderState extends State<NewOrder> {
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Order date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(newOrderList[index]['ordered date'])))}",
+                      "Order date: ${DateFormat("dd/MMM/yy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(newOrderList[index]['ordered date'])))}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
@@ -270,7 +270,7 @@ class _NewOrderState extends State<NewOrder> {
                             barrierDismissible: false,
                             builder: (context){
                               return AlertDialog(
-                                title: Text("Shipped this product?"),
+                                title: Text("Shipped this product?",textAlign: TextAlign.center),
                                 content: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

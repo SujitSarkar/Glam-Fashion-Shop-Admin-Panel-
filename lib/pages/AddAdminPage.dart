@@ -166,7 +166,7 @@ class _AddAdminState extends State<AddAdmin> {
           barrierDismissible: false,
           builder: (context){
             return AlertDialog(
-              title: Text("New admin added"),
+              title: Text("New admin added",textAlign: TextAlign.center),
               content: FlatButton(
                 color: Colors.deepOrange,
                 onPressed: ()=> Navigator.of(context).pop(),
@@ -182,7 +182,7 @@ class _AddAdminState extends State<AddAdmin> {
           barrierDismissible: false,
           builder: (context){
             return AlertDialog(
-              title: Text("$error"),
+              title: Text("$error",textAlign: TextAlign.center),
               content: FlatButton(
                 color: Colors.deepOrange,
                 onPressed: ()=> Navigator.of(context).pop(),

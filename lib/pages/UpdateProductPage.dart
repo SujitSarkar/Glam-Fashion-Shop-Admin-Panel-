@@ -397,7 +397,7 @@ class _UpdateProductState extends State<UpdateProduct> {
           barrierDismissible: false,
           builder: (context){
             return AlertDialog(
-              title: Text("Product updated"),
+              title: Text("Product updated",textAlign: TextAlign.center),
               content: FlatButton(
                 color: Colors.deepOrange,
                 onPressed: ()=> Navigator.of(context).pop(),
@@ -416,7 +416,7 @@ class _UpdateProductState extends State<UpdateProduct> {
           barrierDismissible: false,
           builder: (context){
             return AlertDialog(
-              title: Text(errorMgs.toString()),
+              title: Text(errorMgs.toString(),textAlign: TextAlign.center),
               content: FlatButton(
                 color: Colors.deepOrange,
                 onPressed: ()=> Navigator.of(context).pop(),
@@ -460,7 +460,7 @@ class _UpdateProductState extends State<UpdateProduct> {
                 barrierDismissible: false,
                 builder: (context){
                   return AlertDialog(
-                    title: Text("Product updated"),
+                    title: Text("Product updated",textAlign: TextAlign.center),
                     content: FlatButton(
                       color: Colors.deepOrange,
                       onPressed: ()=> Navigator.of(context).pop(),
@@ -478,7 +478,7 @@ class _UpdateProductState extends State<UpdateProduct> {
               barrierDismissible: false,
               builder: (context){
                 return AlertDialog(
-                  title: Text(errorMsg.toString()),
+                  title: Text(errorMsg.toString(),textAlign: TextAlign.center),
                   content: FlatButton(
                     color: Colors.deepOrange,
                     onPressed: ()=> Navigator.of(context).pop(),
@@ -508,8 +508,22 @@ class _UpdateProductState extends State<UpdateProduct> {
       setState(() => isLoading = false);
       Navigator.of(context).pop();
     }, onError: (errorMgs) {
-      print(errorMgs.toString());
       setState(() => isLoading = false);
+      ///Show Alert Dialog....
+      showDialog(context: context,
+          barrierDismissible: false,
+          builder: (context){
+            return AlertDialog(
+              title: Text(errorMgs.toString(),textAlign: TextAlign.center),
+              content: FlatButton(
+                color: Colors.deepOrange,
+                onPressed: ()=> Navigator.of(context).pop(),
+                splashColor: Colors.deepOrange[300],
+                child: Text("Close",style: TextStyle(color: Colors.white),),
+              ),
+            );
+          }
+      );
     });
   }
 

@@ -67,7 +67,7 @@ class _UserDetailsState extends State<UserDetails> {
                   return AlertDialog(
                     title: Center(
                         child: Text(
-                      "${userList.length} Active Users",
+                      "${userList.length} Active Users",textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.green),
                     )),
                     content: FlatButton(

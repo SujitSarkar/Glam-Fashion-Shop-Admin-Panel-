@@ -474,7 +474,7 @@ class _ShippedOrder extends State<ShippedOrder> {
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Order date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedOrder[index]['ordered date'])))}",
+                      "Order date: ${DateFormat("dd/MMM/yy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedOrder[index]['ordered date'])))}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
@@ -486,7 +486,7 @@ class _ShippedOrder extends State<ShippedOrder> {
                             barrierDismissible: false,
                             builder: (context){
                               return AlertDialog(
-                                title: Text("Unshipped this product?"),
+                                title: Text("Unshipped this product?",textAlign: TextAlign.center),
                                 content: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:admin_panel_gs/shared/formDecoration.dart';
@@ -13,6 +12,7 @@ class UpdateProduct extends StatefulWidget {
   final String productName;
   final dynamic productPrice;
   final String productDesc;
+  final String productCategory;
   final String availableSize;
   final String availableStock;
 
@@ -23,7 +23,8 @@ class UpdateProduct extends StatefulWidget {
       this.productPrice,
       this.productDesc,
       this.availableSize,
-      this.availableStock});
+      this.availableStock,
+      this.productCategory});
 
   @override
   _UpdateProductState createState() => _UpdateProductState(
@@ -33,7 +34,8 @@ class UpdateProduct extends StatefulWidget {
       this.productPrice,
       this.productDesc,
       this.availableSize,
-      this.availableStock);
+      this.availableStock,
+  this.productCategory);
 }
 
 class _UpdateProductState extends State<UpdateProduct> {
@@ -42,17 +44,19 @@ class _UpdateProductState extends State<UpdateProduct> {
   String _productName;
   dynamic _productPrice;
   String _productDesc;
+  String _productCategory;
   String _availableSize;
   String _availableStock;
 
   _UpdateProductState(this._id,this._productImage, this._productName, this._productPrice,
-      this._productDesc, this._availableSize, this._availableStock);
+      this._productDesc, this._availableSize, this._availableStock,this._productCategory);
 
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController descController = TextEditingController();
   TextEditingController sizeController = TextEditingController();
   TextEditingController stockController = TextEditingController();
+  TextEditingController categoryController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   bool isLoading = false;
@@ -64,15 +68,16 @@ class _UpdateProductState extends State<UpdateProduct> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    retrivePreviousData();
+    retrievePreviousData();
   }
 
-  void retrivePreviousData() {
+  void retrievePreviousData() {
     nameController = TextEditingController(text: _productName);
     priceController = TextEditingController(text: "$_productPrice");
     descController = TextEditingController(text: _productDesc);
     sizeController = TextEditingController(text: _availableSize);
     stockController = TextEditingController(text: _availableStock);
+    categoryController = TextEditingController(text: _productCategory);
   }
 
   @override
@@ -205,6 +210,28 @@ class _UpdateProductState extends State<UpdateProduct> {
                               hintText: 'Product Point'),
                           onChanged: (value) {
                             setState(() => changedProductPoint = value);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text("Product Category : ",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[600])),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.text,
+                          textCapitalization: TextCapitalization.words,
+                          controller: categoryController,
+                          validator: (value)=> value.isEmpty? "Enter product Category":null,
+                          decoration: productInputDecoration.copyWith(
+                              hintText: 'Product Category (eg. Electronics)'),
+                          onChanged: (value) {
+                            setState(() => _productCategory = value);
                           },
                         ),
                         SizedBox(
@@ -388,6 +415,7 @@ class _UpdateProductState extends State<UpdateProduct> {
       "name": _productName,
       "description": _productDesc,
       "price": point,
+      "category": _productCategory,
       "available stock": _availableStock,
       "size": _availableSize,
     }).then((data) async{
@@ -450,6 +478,7 @@ class _UpdateProductState extends State<UpdateProduct> {
             "name": _productName,
             "description": _productDesc,
             "price": point,
+            "category": _productCategory,
             "available stock": _availableStock,
             "size": _availableSize,
             "image": newImageDownloadUrl,

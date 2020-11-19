@@ -15,7 +15,7 @@ class _MaintainProductState extends State<MaintainProduct> {
   bool isSearch = false, isLoading = true;
   String searchQuery;
 
-  List productList=[];
+  List productList = [];
   List searchedProducts = [];
 
   @override
@@ -52,17 +52,21 @@ class _MaintainProductState extends State<MaintainProduct> {
               : productList.length == 0
                   ? noDataFoundMgs()
                   : mainList(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
       floatingActionButton: FloatingActionButton(
         tooltip: "Total Products",
-        onPressed: (){
+        onPressed: () {
           ///Show Alert Dialog....
           showDialog(
               context: context,
               barrierDismissible: false,
               builder: (context) {
                 return AlertDialog(
-                  title: Text("Total Products: ${productList.length}",textAlign: TextAlign.center,),
+                  title: Text(
+                    "Total Products: ${productList.length}",style: TextStyle(color: Colors.green),
+                    textAlign: TextAlign.center,
+                  ),
                   content: FlatButton(
                     color: Colors.deepOrange,
                     onPressed: () {
@@ -78,7 +82,10 @@ class _MaintainProductState extends State<MaintainProduct> {
               });
         },
         backgroundColor: Colors.deepOrange,
-        child: Icon(Icons.widgets_rounded,color: Colors.white,),
+        child: Icon(
+          Icons.widgets_rounded,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -157,7 +164,7 @@ class _MaintainProductState extends State<MaintainProduct> {
   }
 
   Widget mainList(BuildContext context) {
-    Size size= MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     getAllProducts();
     return Container(
       padding: EdgeInsets.all(10),
@@ -165,7 +172,7 @@ class _MaintainProductState extends State<MaintainProduct> {
       child: GridView.builder(
         itemCount: productList.length,
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: size.width/2,
+            maxCrossAxisExtent: size.width / 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 0.7),
@@ -184,6 +191,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                             availableStock: productList[index]
                                 ['available stock'],
                             availableSize: productList[index]['size'],
+                        productCategory: productList[index]['category'],
                           )));
             },
             onLongPress: () {
@@ -206,7 +214,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                   contentPadding: EdgeInsets.all(5),
                   title: Text(
                     productList[index]['name'],
-                    style: TextStyle(color: Colors.grey[800]),
+                    style: TextStyle(color: Colors.grey[800],fontSize: size.width / 27),
                     maxLines: 3,
                   ),
                   subtitle: Container(
@@ -218,7 +226,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                           child: Text(
                             "৳: ${productList[index]['price']} Coin",
                             textAlign: TextAlign.left,
-                            style: TextStyle(color: Colors.deepOrange),
+                            style: TextStyle(color: Colors.deepOrange,fontSize: size.width / 21),
                           ),
                         ),
                         Container(
@@ -243,7 +251,7 @@ class _MaintainProductState extends State<MaintainProduct> {
   }
 
   Widget customSearch(BuildContext context) {
-    Size size= MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     fetchSearchProducts();
     return searchedProducts.length == 0
         ? Center(
@@ -270,7 +278,7 @@ class _MaintainProductState extends State<MaintainProduct> {
             child: GridView.builder(
               itemCount: searchedProducts.length,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: size.width/2,
+                  maxCrossAxisExtent: size.width / 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   childAspectRatio: 0.7),
@@ -295,6 +303,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                                       ['available stock'],
                                   availableSize: searchedProducts[index]
                                       ['size'],
+                              productCategory: searchedProducts[index]['category'],
                                 )));
                   },
                   onLongPress: () {
@@ -318,7 +327,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                         title: Text(
                           "${searchedProducts[index]['name']}",
                           textAlign: TextAlign.left,
-                          style: TextStyle(color: Colors.grey[800]),
+                          style: TextStyle(color: Colors.grey[800],fontSize: size.width / 27,),
                           maxLines: 3,
                         ),
                         subtitle: Container(
@@ -330,7 +339,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                                 child: Text(
                                   "৳: ${searchedProducts[index]['price']} Coin",
                                   textAlign: TextAlign.left,
-                                  style: TextStyle(color: Colors.deepOrange),
+                                  style: TextStyle(color: Colors.deepOrange,fontSize:size.width / 21),
                                 ),
                               ),
                               Container(
@@ -370,8 +379,7 @@ class _MaintainProductState extends State<MaintainProduct> {
                   padding: EdgeInsets.only(top: 5.0),
                   child: Text(
                     "Delete this product?",
-                    style:
-                        TextStyle(fontSize: 18.0, color: Colors.grey[800]),
+                    style: TextStyle(fontSize: 18.0, color: Colors.grey[800]),
                   ),
                 ),
                 SizedBox(
@@ -389,7 +397,9 @@ class _MaintainProductState extends State<MaintainProduct> {
                           size: 30.0,
                         ),
                         onPressed: () {
-                          setState((){isLoading=true;});
+                          setState(() {
+                            isLoading = true;
+                          });
                           Navigator.of(context).pop();
                           FirebaseStorage.instance
                               .ref()

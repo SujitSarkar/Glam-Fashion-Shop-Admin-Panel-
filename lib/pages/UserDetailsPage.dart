@@ -24,7 +24,8 @@ class _UserDetailsState extends State<UserDetails> {
 
   fetchUser() async {
     final QuerySnapshot resultQuery =
-        await Firestore.instance.collection("Users").getDocuments();
+        await Firestore.instance.collection("Users")
+            .orderBy('created date', descending: true).getDocuments();
     userList = resultQuery.documents;
 
     if (userList.length != null) {
@@ -174,7 +175,7 @@ class _UserDetailsState extends State<UserDetails> {
           itemCount: userList.length,
           itemBuilder: (context, index) {
             return Card(
-              margin: EdgeInsets.only(bottom: 10, top: 10),
+              margin: EdgeInsets.only(bottom: 5, top: 5),
               child: Column(
                 children: [
                   ///User Name....
@@ -214,6 +215,26 @@ class _UserDetailsState extends State<UserDetails> {
                     ),
                   ),
 
+                  ///Total referred....
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Total referred: ${userList[index]['total referred']}",
+                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                    ),
+                  ),
+
+                  ///Video watched....
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Video watched: ${userList[index]['video watched']}",
+                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                    ),
+                  ),
+
                   ///User Address....
                   Container(
                     margin: EdgeInsets.only(top: 5, left: 10),
@@ -229,7 +250,7 @@ class _UserDetailsState extends State<UserDetails> {
                     margin: EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Join Date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(userList[index]['created date'])))}",
+                      "Join Date: ${DateFormat("dd/MMM/yy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(userList[index]['created date'])))}",
                       style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                     ),
                   ),
@@ -270,7 +291,7 @@ class _UserDetailsState extends State<UserDetails> {
                 itemCount: searchedUser.length,
                 itemBuilder: (context, index) {
                   return Card(
-                    margin: EdgeInsets.only(bottom: 10, top: 10),
+                    margin: EdgeInsets.only(bottom: 5, top: 5),
                     child: Column(
                       children: [
                         ///User Name....
@@ -311,6 +332,26 @@ class _UserDetailsState extends State<UserDetails> {
                           ),
                         ),
 
+                        ///Total referred....
+                        Container(
+                          margin: EdgeInsets.only(top: 5, left: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Total referred: ${searchedUser[index]['total referred']}",
+                            style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                          ),
+                        ),
+
+                        ///Video watched....
+                        Container(
+                          margin: EdgeInsets.only(top: 5, left: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Video watched: ${searchedUser[index]['video watched']}",
+                            style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                          ),
+                        ),
+
                         ///User Address....
                         Container(
                           margin: EdgeInsets.only(top: 5, left: 10),
@@ -327,7 +368,7 @@ class _UserDetailsState extends State<UserDetails> {
                           margin: EdgeInsets.only(top: 5, left: 10),
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Join Date: ${DateFormat("dd MMMM, yyyy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedUser[index]['created date'])))}",
+                            "Join Date: ${DateFormat("dd/MMM/yy - hh:mm:aa").format(DateTime.fromMillisecondsSinceEpoch(int.parse(searchedUser[index]['created date'])))}",
                             style: TextStyle(
                                 fontSize: 14, color: Colors.grey[700]),
                           ),

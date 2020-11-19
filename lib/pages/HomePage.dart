@@ -1,5 +1,6 @@
 import 'package:admin_panel_gs/pages/AddAdminPage.dart';
 import 'package:admin_panel_gs/pages/LoginPage.dart';
+import 'package:admin_panel_gs/pages/MaintainAdminPage.dart';
 import 'package:admin_panel_gs/pages/MaintainPointPage.dart';
 import 'package:admin_panel_gs/pages/MaintainProductPage.dart';
 import 'package:admin_panel_gs/pages/AddNewProduct.dart';
@@ -46,6 +47,7 @@ class Home extends StatelessWidget {
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         children: [
 
+          ///Add new product
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProduct()));
@@ -68,6 +70,7 @@ class Home extends StatelessWidget {
             ),
           ),
 
+          ///Maintain product
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>MaintainProduct()));
@@ -90,6 +93,7 @@ class Home extends StatelessWidget {
             ),
           ),
 
+          ///New order list
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>NewOrder()));
@@ -113,6 +117,7 @@ class Home extends StatelessWidget {
             ),
           ),
 
+          ///Shipped order
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>ShippedOrder()));
@@ -136,6 +141,7 @@ class Home extends StatelessWidget {
             ),
           ),
 
+          ///User details
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>UserDetails()));
@@ -159,6 +165,7 @@ class Home extends StatelessWidget {
             ),
           ),
 
+          ///Update reward point
           GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>MaintainPoint()));
@@ -182,9 +189,10 @@ class Home extends StatelessWidget {
             ),
           ),
 
+          ///Maintain admin
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>AddAdmin()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>MaintainAdmin()));
             },
             child: Container(
               color: Colors.orange[100],
@@ -196,7 +204,7 @@ class Home extends StatelessWidget {
                   Icon(Icons.security_outlined,
                       size: 50.0, color: Colors.deepOrange),
                   Text(
-                    "Add Admin",
+                    "Maintain Admin",
                     style: TextStyle(fontSize: 18.0, color: Colors.deepOrange),
                     textAlign: TextAlign.center,
                   ),
@@ -205,6 +213,7 @@ class Home extends StatelessWidget {
             ),
           ),
 
+          ///About us
           GestureDetector(
             onTap: () {
               //Navigator.push(context, MaterialPageRoute(builder: (context)=>MyApp()));
